@@ -1,0 +1,16 @@
+description: >
+  This is a test
+# What will this command do?
+# Descriptions should be short, simple, and clear.
+parameters:
+  waypoint_version:
+    default: WAYPOINT_VERSION
+    type: env_var_name
+
+steps:
+  - run:
+      name: Install Waypoint
+      command: |
+        wget -q -O /tmp/waypoint.zip https://releases.hashicorp.com/waypoint/<< parameters.waypoint_version >>/waypoint_<< parameters.waypoint_version >>_linux_amd64.zip
+        sudo unzip -d /usr/local/bin /tmp/waypoint.zip
+        rm -rf /tmp/waypoint*

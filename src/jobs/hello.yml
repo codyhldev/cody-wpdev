@@ -1,0 +1,38 @@
+description: >
+  Sample description
+# What will this job do?
+# Descriptions should be short, simple, and clear.
+
+executor: default
+
+parameters:
+  WAYPOINT_VERSION:
+    type: env_var_name
+    default: WAYPOINT_VERSION
+    description:
+  WAYPOINT_SERVER_ADDR:
+    type: env_var_name
+    default: WAYPOINT_SERVER_ADDR
+    description:
+  WAYPOINT_SERVER_TOKEN:
+    type: env_var_name
+    default: WAYPOINT_SERVER_TOKEN
+    description:
+  WAYPOINT_SERVER_TLS:
+    type: env_var_name
+    default: WAYPOINT_SERVER_TLS
+    description:
+  WAYPOINT_SERVER_TLS_SKIP_VERIFY:
+    type: env_var_name
+    default: WAYPOINT_SERVER_TLS_SKIP_VERIFY
+    description:
+
+steps:
+  - install:
+      waypoint_version: << parameters.WAYPOINT_VERSION >>
+  - configure:
+      waypoint_server: << parameters.WAYPOINT_SERVER_ADDR >>
+      waypoint_token: << parameters.WAYPOINT_SERVER_TOKEN >>
+      waypoint_tls: << parameters.WAYPOINT_SERVER_TLS >>
+      waypoint_skip_tls: << parameters.WAYPOINT_SERVER_TLS_SKIP_VERIFY >>
+  - deploy:
